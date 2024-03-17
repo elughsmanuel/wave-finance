@@ -1,4 +1,5 @@
 import express from 'express';
+import { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import http from "http";
@@ -6,6 +7,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import sequelize from './models';
 import { errorMiddleware } from './middleware/errorMiddleware';
 import { logger } from './log/logger';
+import axios from 'axios';
 import authRouter from './auth/routers/authRouter';
 import userRouter from './user/routers/userRouter';
 
@@ -15,6 +17,30 @@ const port = Number(process.env.PORT || 8000);
 const httpServer = http.createServer(app);
 
 app.use(express.json());
+
+app.post('/api/v1/payments', async (
+    req: Request, 
+    res: Response,
+    next: NextFunction,
+) => {
+    try {
+        const response = await axios.post("",
+        req.body,
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
+                },
+            }
+        );
+
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            data: response.data,
+        });
+    } catch(error) {
+        next(error)
+    }
+});
 
 app.get('/', (req, res) => {
     return  res.status(StatusCodes.OK).json({
