@@ -18,30 +18,6 @@ const httpServer = http.createServer(app);
 
 app.use(express.json());
 
-app.post('/api/v1/payments', async (
-    req: Request, 
-    res: Response,
-    next: NextFunction,
-) => {
-    try {
-        const response = await axios.post("",
-        req.body,
-            {
-                headers: {
-                    Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
-                },
-            }
-        );
-
-        return res.status(StatusCodes.OK).json({
-            success: true,
-            data: response.data,
-        });
-    } catch(error) {
-        next(error)
-    }
-});
-
 app.get('/', (req, res) => {
     return  res.status(StatusCodes.OK).json({
         success: true,
