@@ -18,7 +18,6 @@ export const UNIQUE_EMAIL = "Email address already exist";
 export const UNIQUE_USERNAME = "Username already exist";
 export const UNIQUE_EMAIL_CODE ="unique_email_name_constraint";
 export const UNIQUE_USERNAME_CODE ="unique_username_name_constraint";
-export const UNIQUE_CONSTRAINT = "Unique constraint violation";
 export const VALID_EMAIL = "Please provide a valid email address";
 export const VALID_PASSWORD = "Your password must be at least 8 characters long";
 export const MATCHING_PASSWORD = "Passwords do not match";

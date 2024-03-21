@@ -4,9 +4,6 @@ import Joi from 'joi';
 import Unauthenticated from '../errors/Unauthenticated';
 import BadRequest from '../errors/BadRequest';
 import UnprocessableEntity from '../errors/UnprocessableEntity';
-import { 
-    UNIQUE_CONSTRAINT,
- } from '../auth/utils/constants';
 import { logger } from '../log/logger';
 
 export const errorMiddleware = (
