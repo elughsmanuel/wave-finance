@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import UserRepository from '../../user/repositories/userRepository';
@@ -23,11 +23,9 @@ import {
 
 class AuthService {
     private userRepository: UserRepository;
-    private emailService: EmailService;
 
     constructor(userRepository: UserRepository) {
         this.userRepository = userRepository;
-        this.emailService = new EmailService();
     }
 
     async signUp(firstName: string, lastName: string, email: string, username: string, password: string, confirmPassword: string, res: Response) {
@@ -116,7 +114,7 @@ class AuthService {
         };
     }
 
-    async forgotPassword(email: string) {
+    async forgotPassword(req: Request, email: string) {
         const user = await this.userRepository.findByEmail(email);
 
         if (!user) {
@@ -140,8 +138,13 @@ class AuthService {
 
         await this.userRepository.updateUserResetToken(user.id, hashedToken, expirationTime);
 
+        const resetURL = `${req.protocol}://${req.get('host')}/api/v1/auth/reset-password/${resetToken}`;
+
         // Send a reset password email to the user
-        await this.emailService.sendResetPasswordEmail(user.email, resetToken);
+        await new EmailService({ 
+            email: user.email, 
+            firstName: user.firstName, 
+        }, resetURL).sendResetPasswordEmail()
 
         return { 
             success: true, 

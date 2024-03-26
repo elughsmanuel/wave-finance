@@ -60,7 +60,7 @@ export const forgotPassword = async (
     try {
         const schema = await emailSchema.validateAsync(req.body);
 
-        const forgotPassword = await authService.forgotPassword(schema.email);
+        const forgotPassword = await authService.forgotPassword(req, schema.email);
 
         return res.status(StatusCodes.OK).json(forgotPassword);
     } catch (error) {
