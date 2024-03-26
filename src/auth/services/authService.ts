@@ -28,7 +28,7 @@ class AuthService {
         this.userRepository = userRepository;
     }
 
-    async signUp(firstName: string, lastName: string, email: string, username: string, password: string, confirmPassword: string, res: Response) {
+    async signUp(firstName: string, lastName: string, email: string, username: string, password: string, confirmPassword: string, req: Request, res: Response) {
         const emailExist = await this.userRepository.findByEmail(email);
 
         if(emailExist) {
@@ -72,6 +72,13 @@ class AuthService {
         // Generate an access token for the user
         const accessToken = createToken(res, user.id.toString(), user.role);
 
+        const welcomeUrl = `${req.protocol}://${req.get('host')}/home`;
+
+        await new EmailService(
+            user, 
+            welcomeUrl
+        ).sendWelcome();
+
         return { 
             success: true, 
             data: userData,
@@ -114,7 +121,7 @@ class AuthService {
         };
     }
 
-    async forgotPassword(req: Request, email: string) {
+    async forgotPassword(email: string, req: Request) {
         const user = await this.userRepository.findByEmail(email);
 
         if (!user) {
@@ -144,7 +151,7 @@ class AuthService {
         await new EmailService({ 
             email: user.email, 
             firstName: user.firstName, 
-        }, resetURL).sendResetPasswordEmail()
+        }, resetURL).sendResetPasswordEmail();
 
         return { 
             success: true, 

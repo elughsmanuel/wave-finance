@@ -27,6 +27,7 @@ export const signUp = async (
             schema.username,
             schema.password,
             schema.confirmPassword,
+            req,
             res,
         );
 
@@ -60,7 +61,7 @@ export const forgotPassword = async (
     try {
         const schema = await emailSchema.validateAsync(req.body);
 
-        const forgotPassword = await authService.forgotPassword(req, schema.email);
+        const forgotPassword = await authService.forgotPassword(schema.email, req);
 
         return res.status(StatusCodes.OK).json(forgotPassword);
     } catch (error) {

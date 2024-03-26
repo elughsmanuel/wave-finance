@@ -69,7 +69,7 @@ class EmailService {
     }
 
     async sendWelcome() {
-        await this.send('welcome', 'Welcome to the Natours Family!');
+        await this.send('welcome', 'Welcome to Wave Finance!');
     }
 
     async sendResetPasswordEmail() {
