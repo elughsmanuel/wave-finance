@@ -1,6 +1,10 @@
 import nodemailer from 'nodemailer';
 import pug from 'pug';
 import { convert } from 'html-to-text';
+import { 
+    SEND_WELCOME,
+    SEND_RESET_PASSWORD,
+} from './constants';
 
 interface User {
     email: string;
@@ -56,11 +60,11 @@ class EmailService {
     }
 
     async sendWelcome() {
-        await this.send('welcome', 'Welcome to Wave Finance!');
+        await this.send('welcome', SEND_WELCOME);
     }
 
     async sendResetPasswordEmail() {
-        await this.send('passwordReset', 'Wave Finance - Complete your password reset request (valid for 10 mins)');
+        await this.send('passwordReset', SEND_RESET_PASSWORD);
     }  
 };
 
