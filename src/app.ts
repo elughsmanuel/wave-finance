@@ -6,7 +6,6 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import sequelize from './models';
 import { errorMiddleware } from './middleware/errorMiddleware';
 import { logger } from './log/logger';
-import axios from 'axios';
 import authRouter from './auth/routers/authRouter';
 import userRouter from './user/routers/userRouter';
 
