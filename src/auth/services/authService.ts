@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import UserRepository from '../../user/repositories/userRepository';
 import Unauthenticated from '../../errors/Unauthenticated';
+import BadRequest from '../../errors/BadRequest';
+import UnprocessableEntity from '../../errors/UnprocessableEntity';
 import { 
     WRONG_CREDENTIALS, 
     USER_NOT_FOUND,
@@ -13,13 +15,11 @@ import {
     UNIQUE_EMAIL,
     UNIQUE_USERNAME,
 } from '../utils/constants';
-import BadRequest from '../../errors/BadRequest';
-import EmailService from '../../utils/mailer';
-import UnprocessableEntity from '../../errors/UnprocessableEntity';
 import { 
     createToken,
     generateToken,
 } from '../utils/token';
+import EmailService from '../../utils/mailer';
 
 class AuthService {
     private userRepository: UserRepository;
