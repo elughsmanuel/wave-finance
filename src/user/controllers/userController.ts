@@ -59,7 +59,7 @@ export const getMyProfile = async (
 ) => {
     try {
         const user = await userService.getMyProfile(
-            Number(req.userId)
+            Number(req.userId),
         );
 
         return res.status(StatusCodes.OK).json(user);
@@ -115,7 +115,7 @@ export const deleteMe = async (
 ) => {
     try {
         const deleteMe = await userService.deleteMe(
-            Number(req.userId)
+            Number(req.userId),
         );
 
         return res.status(StatusCodes.OK).json(deleteMe);

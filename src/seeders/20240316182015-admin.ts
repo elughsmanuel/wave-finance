@@ -18,7 +18,7 @@ module.exports = {
                     username: process.env.ADMIN_USERNAME,
                     password: await bcryptjs.hash(
                         `${process.env.ADMIN_PASSWORD}`,
-                        Number(process.env.BCRYPT_SALT)
+                        Number(process.env.BCRYPT_SALT),
                     ),
                     role: ADMIN,
                     createdAt: new Date(),

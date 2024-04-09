@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
 import { 
     AUTH_TOKEN_REQUIRED,

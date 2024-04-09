@@ -55,7 +55,7 @@ User.init({
         allowNull: false,
         validate: {
             notEmpty: {
-            msg: FIRST_NAME_REQUIRED,
+                msg: FIRST_NAME_REQUIRED,
             },
         },
     },
@@ -64,7 +64,7 @@ User.init({
         allowNull: false,
         validate: {
             notEmpty: {
-            msg: LAST_NAME_REQUIRED,
+                msg: LAST_NAME_REQUIRED,
             },
         },
     },
@@ -77,7 +77,7 @@ User.init({
         },
         validate: {
             notEmpty: {
-            msg: EMAIL_REQUIRED,
+                msg: EMAIL_REQUIRED,
             },
         },
     },
@@ -90,7 +90,7 @@ User.init({
         },
         validate: {
             notEmpty: {
-            msg: USERNAME_REQUIRED,
+                msg: USERNAME_REQUIRED,
             },
         },
     },
@@ -99,7 +99,7 @@ User.init({
         allowNull: false,
         validate: {
             notEmpty: {
-            msg: PASSWORD_REQUIRED,
+                msg: PASSWORD_REQUIRED,
             },
         },
     },
