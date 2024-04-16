@@ -19,7 +19,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     return  res.status(StatusCodes.OK).json({
         success: true,
-        data: `${ReasonPhrases.OK} : Homepage`,
+        data: `${ReasonPhrases.OK} : Homepage`, 
     });
 });
 
